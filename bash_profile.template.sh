@@ -17,6 +17,7 @@ alias ...="cd ../../.."
 alias ....="cd ../../../.."
 alias .....="cd ../../../../.."
 alias ls='ls -al'
+alias mountall="sudo automount -cv"
 
 # And some non-standard
 # ------------------------
@@ -34,7 +35,6 @@ alias gl="git log"
 alias gdt="git difftool"
 alias gcm="git checkout master"
 alias gb="git branch"
-alias mountall="sudo automount -cv"
 
 
 # Run a temp http server to serve files.
@@ -121,18 +121,18 @@ function descc () {
   openssl x509 -in $1 -text -noout
 }
 
-# Activate Python virtual env. automatically if exists
+# Activate Python3 virtual env. automatically if exists
 # on cd to the directory containing the .venv folder.
 # de-activate on subsequent cd
 function cd() {
-  if [[ -d ./venv ]] ; then
-    deactivate
-  fi
-
   builtin cd $1
-
+  
   if [[ -d ./venv ]] ; then
-    . ./venv/bin/activate
+    source ./venv/bin/activate
+    export DEACTIVATE_ON_CD="set"
+  elif [[ $DEACTIVATE_ON_CD ]] ; then
+    deactivate
+    unset DEACTIVATE_ON_CD
   fi
 }
 
