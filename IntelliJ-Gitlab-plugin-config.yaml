@@ -1,0 +1,6 @@
+# Shortcut - Ctrl+Shift+O
+IntelliJ GitLink plugin URL Template:
+	Name: GitlabVMware
+	Domain: gitlab.eng.vmware.com
+	File at branch template : https://gitlab.eng.vmware.com/{remote:url:path}/-/blob/{branch}/{file:path}/{file:name}#L{line:start}-L{line:end}{line-block:end}
+	File at commit template: {remote:url}/blob/{commit}/{file:path}/{file:name}{line-block:start}#L{line:start}-L{line:end}{line-block:end}
